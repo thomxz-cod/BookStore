@@ -6,7 +6,7 @@
 - **npm i ...**
 
 
-- ``` EX: npm i express moongoose dotenv jsonwebtoken cloudinary bcryptjs cors ```
+- ``` EX: npm i express mongoose dotenv jsonwebtoken cloudinary bcryptjs cors ```
 
 
 
@@ -14,7 +14,7 @@
 ## express  
 - Para melhorar a api
 
-## moongoose
+## mongoose
 - Fazer conexão com o banco de dados BackEnd
 
 ## dotenv
