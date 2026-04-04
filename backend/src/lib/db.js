@@ -1,11 +1,12 @@
-import mongosse from "mongosse";
+import mongoose from "mongoose";
 
 export const connectDB = async () => {
     try{
-        const conn = await mongosse.connect(process.env.MONGO_URI)
-        console.log(`Database conectado! ${conn.connection.host}`)
+        const conn = await mongoose.connect(process.env.MONGO_URI);
+        console.log(`Database conectado! ${conn.connection.host}`);
     } catch (error){
-        console.log("Erro ao conectar database", error);
-        process.exit(1) // Sair do erro
+        console.log("Erro ao conectar o database",error);
+        process.exit(1);
+        // sair com erro
     }
-} 
+}
