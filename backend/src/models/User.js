@@ -3,6 +3,13 @@ import mongoose from "mongoose";
 // hash
 import bcrypt from "bcryptjs";
 
+import jwt from "jsonwebtoken";
+
+const generateToken = (userId) => {
+    jwt.sign({userId})
+}
+
+
 const userSchema = new mongoose.Schema({
     username : {
         type : String,

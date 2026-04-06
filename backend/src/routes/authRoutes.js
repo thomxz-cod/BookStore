@@ -1,5 +1,13 @@
 import express from "express"
 import User from "../models/User.js";
+import jwt from "jsonwebtoken";
+
+
+const generateToken = (userId) => {
+    // jwt.sign({userId})
+    return jwt.sing({userId}, process.env.JWT_SECRET, { expisesIn : "15d" })
+}
+
 
 const router = express.Router();
 
@@ -40,6 +48,18 @@ router.get("/register", async (req , res) => {
         })
 
         await user.save();
+
+        const token = generateToken(user._id);
+
+        res.status(201).json({
+            token,
+            user : {
+                _id : user._id,
+                username : user.username,
+                email : user.email,
+                profileImage : user.profileImage
+            }
+        })
 
     } catch (error) {
 
