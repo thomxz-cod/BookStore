@@ -42,3 +42,9 @@
 
 # Por no scripts do package.json:
 - "dev" : "nodemon index.js",
+
+
+
+
+## DiceBear 
+- API que criar uma mini imagem
