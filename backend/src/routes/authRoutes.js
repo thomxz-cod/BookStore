@@ -4,16 +4,19 @@ import jwt from "jsonwebtoken";
 
 
 const generateToken = (userId) => {
-    // jwt.sign({userId})
-    return jwt.sing({userId}, process.env.JWT_SECRET, { expisesIn : "15d" })
-}
+    return jwt.sign(
+        { userId },
+        process.env.JWT_SECRET,
+        { expiresIn: "15d" }
+    );
+};
 
 
 const router = express.Router();
 
-router.get("/register", async (req , res) => {
+router.post("/register", async (req , res) => {
     try {
-        const {username, email, password} = req.body
+        const {username, email, password} = req.body;
 
         if (!username || !email || !password) {
             return res.status(400).json({ message : "Todos os campos são obrigatorios!" })
@@ -44,7 +47,7 @@ router.get("/register", async (req , res) => {
             username,
             email,
             password,
-            profileImage: ""
+            profileImage
         })
 
         await user.save();
@@ -53,16 +56,17 @@ router.get("/register", async (req , res) => {
 
         res.status(201).json({
             token,
-            user : {
+            user: {
                 _id : user._id,
                 username : user.username,
                 email : user.email,
                 profileImage : user.profileImage
             }
-        })
+        });
 
     } catch (error) {
-
+        console.log(error);
+        res.status(500).json({ message: "Erro no servidor" });
     }
 })
 

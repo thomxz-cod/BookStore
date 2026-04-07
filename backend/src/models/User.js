@@ -6,7 +6,12 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const generateToken = (userId) => {
-    jwt.sign({userId})
+    // jwt.sign({userId})
+    return jwt.sign(
+        { userId },
+        process.env.JWT_SECRET,
+        { expiresIn: "15d" }
+    );
 }
 
 
@@ -27,7 +32,7 @@ const userSchema = new mongoose.Schema({
         required : true,
         minLength : 6
     },
-    profilerImage : {
+    profileImage : {
         type : String,
         default : ""
     }
